@@ -1,23 +1,21 @@
-def encrypt(text,s):
-   result = ""
-   print (len(text))
-   # transverse the plain text
-   for i in range(0,len(text)):
-      char = text[i]
-      print (char)
-      # Encrypt uppercase characters in plain text
-      
-      if (char.isupper()):
-         result += chr((ord(char) + s-65) % 26 + 65)
-      # Encrypt lowercase characters in plain text
-      else:
-         result += chr((ord(char) + s - 97) % 26 + 97)
-      return result
+def caesar(plainText, shift): 
+    cipherText = ""
+    for ch in plainText:
+        if ch.isalpha():
+            stayInAlphabet = ord(ch) + shift 
+            if stayInAlphabet > ord('z'):
+                stayInAlphabet -= 26
+            finalLetter = chr(stayInAlphabet)
+        cipherText += finalLetter
+
+    return cipherText
+
+
 
 #check the above function
 text = "CEASER CIPHER DEMO"
-s = 4
+s = 1
 
 print("Plain Text : " + text)
-print("Shift pattern : " + str(s))
-print("Cipher: " + encrypt(text,s))
+print("expected CIPHER: DFBTFSSDJQIFSSEFNP")
+print("your     Cipher: " + caesar(text,s))
